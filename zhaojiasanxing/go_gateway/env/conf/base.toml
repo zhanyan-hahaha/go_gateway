@@ -1,0 +1,30 @@
+Title = "go gateway config file"
+
+[server]
+ip = "0.0.0.0"
+port = ":80"
+pprof_port = 6060
+access_log = "/opt/tiger/httpdns/log/access.log"
+access_log_level = "error"
+
+[admin]
+ip = "0.0.0.0"
+port = ":8080"
+
+[mysql]
+driver_name = "mysql"
+user = "root"
+password = "123456"
+ip = "10.227.21.233"
+port = 3306
+database = "test"
+max_open_conn = 20
+max_idle_conn = 10
+max_conn_life_time = 100
+
+[redis]
+ip = "10.227.21.233"
+port = 6379
+max_active = 100
+max_idle = 100
+down_grade = false
