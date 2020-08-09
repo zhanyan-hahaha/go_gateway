@@ -1,7 +1,7 @@
 package  main
 
 import (
-	_ "github.com/zhaojiasanxing/go_gateway/conf"
+	"github.com/zhaojiasanxing/go_gateway/conf"
 	"github.com/zhaojiasanxing/go_gateway/router"
 	"os"
 	"os/signal"
@@ -17,7 +17,7 @@ func main()  {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 
 	router.HttpServerRun()
-
+	defer conf.DB.Close()
 	quit := make(chan os.Signal)
 	signal.Notify(quit, syscall.SIGKILL, syscall.SIGQUIT, syscall.SIGINT, syscall.SIGTERM)
 	<-quit

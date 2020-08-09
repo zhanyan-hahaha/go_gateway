@@ -33,6 +33,7 @@ type MysqlConfig struct {
 	PassWord        string `toml:"password"`
 	IP              string `toml:"ip"`
 	Port            int    `toml:"port"`
+	DataSourceName string `toml:"data_source_name"`
 	DataBase        string `toml:"database"`
 	MaxOpenConn     int    `toml:"max_open_conn"`
 	MaxIdleConn     int    `toml:"max_idle_conn"`
@@ -51,10 +52,14 @@ var GlobalConfig Config
 
 func init() {
 	var config Config
-	if _, err := toml.DecodeFile("./env/conf/base.toml", &config); err != nil {
+	if _, err := toml.DecodeFile("/Users/bytedance/go/src/github.com/zhaojiasanxing/go_gateway/env/conf/base.toml", &config); err != nil {
 		log.Panic("decode config file failed: %s", err)
 		os.Exit(0)
 	}
 	GlobalConfig = config
 	log.Println(config)
+	err := InitDBPool(config)
+	if err != nil{
+		log.Panic("mysql err", err)
+	}
 }

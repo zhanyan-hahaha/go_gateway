@@ -17,7 +17,8 @@ user = "root"
 password = "123456"
 ip = "10.227.21.233"
 port = 3305
-database = "test"
+database = "gateway"
+data_source_name = "gateway:123456@tcp(10.227.21.233:3305)/gateway?charset=utf8&parseTime=true&loc=Local"
 max_open_conn = 20
 max_idle_conn = 10
 max_conn_life_time = 100

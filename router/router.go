@@ -38,6 +38,17 @@ func InitRouter(middlewares ...gin.HandlerFunc) *gin.Engine {
 	{
 		controller.AdminLoginRegister(adminLoginRouter)
 	}
+
+	adminRouter := router.Group("/admin")
+	adminRouter.Use(sessions.Sessions("mysession", store),
+		middleware.RecoveryMiddleWare(),
+		middleware.RequestLog(),
+		middleware.SessionAuthMiddleware(),
+		middleware.TranslationMiddleware())
+	{
+		controller.AdminRegister(adminRouter)
+	}
+
 	////非登陆接口
 	//store := sessions.NewCookieStore([]byte("secret"))
 	//apiNormalGroup := router.Group("/api")

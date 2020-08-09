@@ -11,4 +11,5 @@ require (
 	github.com/go-playground/universal-translator v0.17.0
 	github.com/go-playground/validator/v10 v10.3.0
 	github.com/gorilla/sessions v1.2.0 // indirect
+	github.com/jinzhu/gorm v1.9.15
 )

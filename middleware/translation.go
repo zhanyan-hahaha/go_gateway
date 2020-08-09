@@ -32,10 +32,10 @@ func TranslationMiddleware() gin.HandlerFunc {
 			val.RegisterTagNameFunc(func(field reflect.StructField) string {
 				return field.Tag.Get("comment")
 			})
-			val.RegisterValidation("is-validuser", func(fl validator.FieldLevel) bool {
+			val.RegisterValidation("is_valid_username", func(fl validator.FieldLevel) bool {
 				return fl.Field().String() == "admin"
 			})
-			val.RegisterTranslation("is-validuser", trans, func(ut ut.Translator) error {
+			val.RegisterTranslation("is_valid_username", trans, func(ut ut.Translator) error {
 				return ut.Add("is-validuser" , "{0}填写不正确", true)
 			}, func(ut ut.Translator, fe validator.FieldError) string {
 				t,_ := ut.T("is-validuser", fe.Field())
